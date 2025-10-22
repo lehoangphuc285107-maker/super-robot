@@ -1,0 +1,57 @@
+
+:root{--pink:#ff4da6;--dark:#0b0b0b;--muted:#f6f6f8;--accent:#ffd1e8;--card-radius:14px;--max-w:1100px;--shadow: 0 8px 24px rgba(11,11,11,0.12);font-family: 'Segoe UI', Roboto, Arial, sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:linear-gradient(180deg,#fff 0%, #fff 60%);color:var(--dark);scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit}
+.container{max-width:var(--max-w);margin:28px auto;padding:18px;}
+
+/* header */
+.header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--pink),#ff86c8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px;box-shadow:var(--shadow);}
+.nav{display:flex;gap:14px;align-items:center}
+.nav a{padding:8px 12px;border-radius:10px;transition:all .18s;font-weight:600;color:var(--dark)}
+.nav a:hover{background:rgba(255,77,166,0.09);transform:translateY(-3px)}
+
+/* banner carousel */
+.banner{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);height:460px;}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s ease;}
+.slide.active{opacity:1}
+.banner .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,11,11,0.25), rgba(11,11,11,0.35));display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;padding:20px;}
+.banner h1{font-size:44px;letter-spacing:1px;margin-bottom:8px;text-shadow:0 6px 18px rgba(0,0,0,0.35);}
+.banner p{max-width:760px;text-align:center;font-size:16px;color:rgba(255,255,255,0.9)}
+.banner .controls{position:absolute;left:18px;bottom:18px;display:flex;gap:8px;align-items:center}
+.btn{display:inline-block;padding:10px 14px;background:linear-gradient(90deg,var(--pink),#ff86c8);color:white;border-radius:10px;font-weight:700;transition:transform .18s, box-shadow .18s;}
+.btn:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(255,77,166,0.12)}
+
+/* music play button */
+.play-toggle{position:fixed;right:18px;bottom:18px;z-index:80;background:rgba(11,11,11,0.8);color:white;padding:12px;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.35);cursor:pointer}
+.play-toggle:hover{transform:scale(1.05)}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:120}
+.lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+
+/* cards and content */
+.card{background:linear-gradient(180deg, #fff, var(--muted));padding:18px;border-radius:var(--card-radius);box-shadow:var(--shadow);transform:translateY(0); transition:transform .5s, box-shadow .4s, opacity .6s;opacity:0;will-change:transform,opacity;}
+.card.visible{opacity:1;transform:translateY(0);}
+.section{margin-top:20px}
+.info-list{list-style:none;padding:0}
+.info-list li{padding:8px 0;border-bottom:1px dashed rgba(11,11,11,0.05);font-weight:600}
+
+/* music grid */
+.music-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.track{padding:12px;border-radius:12px;background:white;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;gap:12px;align-items:center;transition:transform .25s}
+.track:hover{transform:translateY(-6px)}
+.track img{width:72px;height:72px;border-radius:8px;object-fit:cover}
+.track .meta{flex:1}
+
+/* footer */
+.footer{margin-top:28px;padding:18px;text-align:center;color:rgba(0,0,0,0.6);font-size:14px}
+
+/* page fade */
+.page-fade{opacity:0;transition:opacity .45s ease}
+.page-fade.show{opacity:1}
+
+/* responsive */
+@media(max-width:900px){.banner{height:300px}.nav{display:none}}

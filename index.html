@@ -1,0 +1,84 @@
+<!doctype html>\n<html lang="vi">\n<head>\n  <meta charset="utf-8" />\n  <meta name="viewport" content="width=device-width,initial-scale=1" />\n  <title>ROSE — Portfolio (v2)</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body class="page-fade show">\n  <div class="container">\n    <header class="header">\n      <div class="brand">\n        <div class="logo">RO</div>\n        <div>\n          <div style="font-weight:800;font-size:18px">ROSÉ</div>\n          <div style="font-size:12px;color:rgba(0,0,0,0.5)">BLACKPINK — Vocal & Solo Artist</div>\n        </div>\n      </div>\n\n      <nav class="nav">\n        <a href="index.html">Home</a>\n        <a href="career.html">Sự nghiệp</a>\n        <a href="solo.html">Sản phẩm âm nhạc</a>\n        <a href="contact.html">Liên hệ</a>\n      </nav>\n    </header>\n\n    <!-- Banner / Carousel -->\n    <section class="banner" aria-label="Banner Rosé">\n      <div class="slide" style="background-image:url('https://img.youtube.com/vi/CKZvWhCqx1s/maxresdefault.jpg')"></div>\n      <div class="slide" style="background-image:url('https://img.youtube.com/vi/K9_VFxzCuQ0/maxresdefault.jpg')"></div>\n      <div class="slide" style="background-image:url('https://img.youtube.com/vi/CKZvWhCqx1s/hqdefault.jpg')"></div>\n      <div class="slide" style="background-image:url('https://img.youtube.com/vi/K9_VFxzCuQ0/hqdefault.jpg')"></div>\n      <div class="slide" style="background-image:url('https://img.youtube.com/vi/CKZvWhCqx1s/sddefault.jpg')"></div>\n      <div class="overlay">
+        <h1>ROSÉ</h1>
+        <p>Rosé (Park Chaeyoung) — Vocalist of BLACKPINK. Solo artist known for "On The Ground" & "Gone".</p>
+        <div style="margin-top:12px">
+          <a class="btn" href="career.html">Sự nghiệp</a>
+          <a class="btn" href="solo.html" style="margin-left:10px">Âm nhạc</a>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div style="display:flex;gap:8px;">
+          <button class="btn" onclick="document.querySelectorAll('.slide')[0].scrollIntoView({behavior:'smooth'})">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- content card -->
+    <section class="section card">
+      <h2>Giới thiệu chi tiết</h2>
+      <p style="color:rgba(0,0,0,0.7);line-height:1.6">Rosé (Park Chaeyoung) sinh năm 1997, là thành viên nhóm BLACKPINK đồng thời là nghệ sĩ solo. Cô được biết đến với chất giọng đặc biệt, phong cách ballad-pop và các dự án nghệ thuật quốc tế.</p>
+    </section>
+
+    <div id="playerWrap" style="position:fixed;right:18px;bottom:90px;display:none;z-index:90"></div>
+    <div id="playBtn" class="play-toggle" title="Play / Stop">▶</div>
+
+    <div id="lightbox" class="lightbox"><img src=""></div>
+
+    <footer class="footer">© 2025 — Portfolio Rosé (bản mẫu học tập). Ảnh minh họa lấy từ nguồn công khai (YouTube thumbnails / press).</footer>
+  </div>
+
+<script>
+
+// Carousel
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  function show(i){
+    slides.forEach(s=>s.classList.remove('active'));
+    slides[i].classList.add('active');
+  }
+  show(0);
+  setInterval(()=>{ idx = (idx+1)%slides.length; show(idx); }, 4000);
+})();
+
+// Lightbox
+(function(){
+  const lightbox = document.getElementById('lightbox');
+  document.querySelectorAll('[data-lightbox]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      const src = el.getAttribute('data-lightbox');
+      lightbox.querySelector('img').src = src;
+      lightbox.style.display = 'flex';
+    });
+  });
+  lightbox.addEventListener('click', ()=> lightbox.style.display = 'none');
+})();
+
+// Play button -> show youtube iframe with autoplay
+(function(){
+  const playBtn = document.getElementById('playBtn');
+  const playerWrap = document.getElementById('playerWrap');
+  let playing = false;
+  playBtn.addEventListener('click', ()=>{
+    if(!playing){
+      // create iframe
+      const iframe = document.createElement('iframe');
+      iframe.width = '300'; iframe.height = '180';
+      iframe.src = 'https://www.youtube.com/embed/CKZvWhCqx1s?autoplay=1&rel=0';
+      iframe.frameBorder = '0'; iframe.allow = 'autoplay; encrypted-media'; iframe.allowFullscreen = true;
+      playerWrap.innerHTML = ''; playerWrap.appendChild(iframe); playerWrap.style.display = 'block';
+      playBtn.innerText = '⏸';
+      playing = true;
+    } else {
+      // stop by clearing
+      playerWrap.innerHTML = ''; playerWrap.style.display = 'none';
+      playBtn.innerText = '▶';
+      playing = false;
+    }
+  });
+})();
+
+</script>
+</body>
+</html>

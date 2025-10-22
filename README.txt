@@ -1,0 +1,1 @@
+Rose Portfolio v2 - instructions:\nOpen index.html. Click Play button to load official YouTube MV (autoplay after click). Images are hotlinked from YouTube thumbnails.
